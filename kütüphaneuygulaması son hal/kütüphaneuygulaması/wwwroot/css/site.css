@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@700&display=swap');
+
+:root {
+  --gece-laciverti: #1E293B;
+  --acik-gri: #E2E8F0;
+  --canli-turuncu: #F97316;
+  --yumusak-beyaz: #F8FAFC;
+  --derin-mavi: #3B82F6;
+  --nane-yesili: #34D399;
+  --font-baslik: 'Poppins', 'Montserrat', 'Raleway', sans-serif;
+  --font-paragraf: 'Open Sans', 'Roboto', 'Inter', sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--acik-gri);
+  color: var(--gece-laciverti);
+  font-family: var(--font-paragraf);
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-baslik);
+}
+
+.navbar {
+  background: var(--gece-laciverti) !important;
+  color: var(--yumusak-beyaz);
+}
+
+.navbar a, .navbar-brand, .navbar-nav .nav-link {
+  color: var(--yumusak-beyaz) !important;
+  font-weight: 600;
+}
+
+.navbar a:hover, .navbar-nav .nav-link.active {
+  color: var(--canli-turuncu) !important;
+}
+
+.container, main.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+main.container {
+  flex: 1 0 auto;
+}
+
+.btn-primary, .btn-info, .btn-danger, .btn-success, .btn-warning {
+  color: #fff !important;
+}
+
+.btn-primary {
+  background: var(--canli-turuncu);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--derin-mavi);
+}
+
+.btn-info {
+  background: var(--derin-mavi);
+  border: none;
+}
+
+.btn-info:hover {
+  background: #2563eb;
+}
+
+.btn-danger {
+  background: #dc2626;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #991b1b;
+}
+
+.btn-success {
+  background: var(--nane-yesili);
+  border: none;
+}
+
+.btn-success:hover {
+  background: #059669;
+}
+
+a, .link {
+  color: var(--derin-mavi);
+  text-decoration: none;
+}
+
+a:hover, .link:hover {
+  color: var(--canli-turuncu);
+}
+
+.card {
+  background: var(--yumusak-beyaz);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(30,41,59,0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.alert-success {
+  background: var(--nane-yesili);
+  color: #fff;
+  border: none;
+}
+
+.table {
+  background: var(--yumusak-beyaz);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+input, select, textarea {
+  border-radius: 6px !important;
+  border: 1px solid var(--acik-gri) !important;
+  background: #fff !important;
+  font-family: var(--font-paragraf);
+}
+
+footer {
+  background: var(--gece-laciverti);
+  color: var(--yumusak-beyaz);
+  padding: 0.5rem 0;
+  text-align: center;
+  margin-top: 1rem;
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* Modern ve şık tbody için */
+tbody tr {
+  background: linear-gradient(90deg, #f8fafc 80%, #f97316 100%);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+tbody tr:hover {
+  background: linear-gradient(90deg, #f97316 0%, #f8fafc 100%);
+  box-shadow: 0 2px 12px rgba(249,115,22,0.08);
+}
+tbody td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.65rem 0.75rem;
+  font-size: 1.05rem;
+  vertical-align: middle;
+}
+
+/* Books/Index tablosu için hover ve shadow efekti */
+.table-books tbody tr {
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.table-books tbody tr:hover {
+  box-shadow: 0 8px 32px rgba(30,41,59,0.18), 0 3px 0 #f97316;
+  background: linear-gradient(90deg, #f8fafc 40%, #f97316 100%);
+  z-index: 2;
+  position: relative;
+}
+.table-books tbody td {
+  min-height: 56px;
+  height: 56px;
+  vertical-align: middle;
+}
+
+/* Header (navbar) inceltme */
+.navbar {
+  min-height: 48px;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+.navbar .container {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.navbar-brand {
+  font-size: 1.1rem;
+  padding: 0.1rem 0.5rem;
+}
+.navbar-nav .nav-link {
+  padding: 0.25rem 0.75rem !important;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container, main.container {
+    padding: 1rem 0.5rem;
+    max-width: 100%;
+  }
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+  .card {
+    padding: 1rem;
+  }
+  .table {
+    font-size: 0.95rem;
+  }
+}

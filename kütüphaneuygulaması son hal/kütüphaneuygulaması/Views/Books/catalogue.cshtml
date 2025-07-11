@@ -1,0 +1,29 @@
+﻿@model IEnumerable<kütüphaneuygulaması.Models.Book>
+@{
+    ViewData["Title"] = "Kitaplar";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h1 class="mb-4 text-center">Kitaplar</h1>
+<div class="row g-4 justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+            <div class="card shadow-sm h-100" style="border-radius: 16px;">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <img src="~/images/@item.imgfile" alt="@item.title" class="mb-3" style="height: 150px; object-fit: contain; border-radius: 8px; background: var(--acik-gri); width: 100%; max-width: 160px;" />
+                    <h5 class="card-title text-center" style="color: var(--gece-laciverti); font-family: var(--font-baslik); font-weight: 700;">@item.title</h5>
+                    <p class="card-text text-muted mb-2" style="font-size: 0.95rem;">@item.author</p>
+                    <div class="mb-2 fw-bold" style="color: var(--canli-turuncu); font-size: 1.1rem;">@item.price ₺</div>
+                    <form asp-controller="Cart" asp-action="Add" method="post" class="w-100 mb-2">
+                        <input type="hidden" name="bookId" value="@item.Id" />
+                        <button type="submit" class="btn btn-primary w-100 text-white">Sepete Ekle</button>
+                    </form>
+                    <a asp-controller="orders" asp-action="Create" asp-route-id="@item.Id" class="btn btn-warning mt-auto w-100 text-white fw-bold" style="letter-spacing:1px; font-size:1.1rem;">Satın Al</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
