@@ -1,0 +1,41 @@
+SELECT TOP (1000) [Id]
+      ,[name]
+      ,[pass]
+      ,[role]
+      ,[email]
+  FROM [kutuphane].[dbo].[usersaccounts]
+
+SELECT TOP (1000) [Id]
+      ,[customername]
+      ,[total]
+  FROM [kutuphane].[dbo].[report]
+
+SELECT TOP (1000) [Id]
+      ,[bookId]
+      ,[userid]
+      ,[quantity]
+      ,[orderdate]
+  FROM [kutuphane].[dbo].[orders]
+
+SELECT TOP (1000) [Id]
+      ,[UserId]
+      ,[BookId]
+      ,[Quantity]
+      ,[AddedDate]
+  FROM [kutuphane].[dbo].[Cart]
+
+
+SELECT TOP (1000) [Id]
+      ,[title]
+      ,[info]
+      ,[bookquantity]
+      ,[price]
+      ,[cataid]
+      ,[author]
+      ,[imgfile]
+  FROM [kutuphane].[dbo].[Book]
+
+
+SELECT TOP (1000) [MigrationId]
+      ,[ProductVersion]
+  FROM [kutuphane].[dbo].[__EFMigrationsHistory]
