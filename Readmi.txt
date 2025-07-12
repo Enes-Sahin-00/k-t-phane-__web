@@ -1,41 +1,272 @@
-SELECT TOP (1000) [Id]
-      ,[name]
-      ,[pass]
-      ,[role]
-      ,[email]
-  FROM [kutuphane].[dbo].[usersaccounts]
+# Kütüphane Uygulaması
 
-SELECT TOP (1000) [Id]
-      ,[customername]
-      ,[total]
-  FROM [kutuphane].[dbo].[report]
+## Proje Açıklaması
 
-SELECT TOP (1000) [Id]
-      ,[bookId]
-      ,[userid]
-      ,[quantity]
-      ,[orderdate]
-  FROM [kutuphane].[dbo].[orders]
+Bu proje, ASP.NET Core MVC kullanılarak geliştirilmiş modern bir kütüphane yönetim sistemidir. CodeFirst yaklaşımı ile Entity Framework Core kullanılarak oluşturulmuştur.
 
-SELECT TOP (1000) [Id]
-      ,[UserId]
-      ,[BookId]
-      ,[Quantity]
-      ,[AddedDate]
-  FROM [kutuphane].[dbo].[Cart]
+## Özellikler
 
+### ✅ Tamamlanan Özellikler
+- **CodeFirst Yaklaşımı**: Entity Framework Core ile veritabanı tasarımı
+- **REST API**: Tüm CRUD işlemleri için API endpoint'leri
+- **MVC Yapısı**: Model-View-Controller mimarisi
+- **Admin Paneli**: Role-based authentication ile yönetim paneli
+- **Sepet Sistemi**: Kullanıcıların kitap sepeti oluşturabilmesi
+- **Favori Sistemi**: Kullanıcıların kitap favorilerini yönetebilmesi
+- **Kategori Yönetimi**: Kitap kategorilerinin yönetimi
+- **Responsive Tasarım**: Bootstrap ile mobil uyumlu tasarım
+- **Session Yönetimi**: Kullanıcı oturum yönetimi
 
-SELECT TOP (1000) [Id]
-      ,[title]
-      ,[info]
-      ,[bookquantity]
-      ,[price]
-      ,[cataid]
-      ,[author]
-      ,[imgfile]
-  FROM [kutuphane].[dbo].[Book]
+### 📋 Menü Yapısı
+- **Ana Sayfa**: Proje tanıtımı ve özellikler
+- **Kitaplar**: Kitap kataloğu ve detayları
+- **Kategoriler**: Kitap kategorileri listesi
+- **Hakkımızda**: Şirket bilgileri
+- **Bize Ulaşın**: İletişim bilgileri ve form
 
+## Teknolojiler
 
-SELECT TOP (1000) [MigrationId]
-      ,[ProductVersion]
-  FROM [kutuphane].[dbo].[__EFMigrationsHistory]
+- **Backend**: ASP.NET Core 8.0
+- **Veritabanı**: SQL Server (LocalDB)
+- **ORM**: Entity Framework Core
+- **Frontend**: Bootstrap 5.3.2
+- **Authentication**: Session-based authentication
+
+## Kurulum
+
+1. **Projeyi klonlayın**
+```bash
+git clone [repository-url]
+cd kütüphaneuygulaması
+```
+
+2. **Veritabanını oluşturun**
+```bash
+dotnet ef database update
+```
+
+3. **Uygulamayı çalıştırın**
+```bash
+dotnet run
+```
+
+4. **Tarayıcıda açın**
+```
+http://localhost:5247
+```
+
+## Veritabanı Yapısı
+
+### Tablolar
+
+#### 1. usersaccounts (Kullanıcılar)
+```sql
+CREATE TABLE [usersaccounts] (
+    [Id] int NOT NULL IDENTITY,
+    [name] nvarchar(max) NOT NULL,
+    [pass] nvarchar(max) NOT NULL,
+    [role] nvarchar(max) NOT NULL,
+    [email] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_usersaccounts] PRIMARY KEY ([Id])
+);
+```
+
+#### 2. Category (Kategoriler)
+```sql
+CREATE TABLE [Category] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [ImageUrl] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Category] PRIMARY KEY ([Id])
+);
+```
+
+#### 3. Book (Kitaplar)
+```sql
+CREATE TABLE [Book] (
+    [Id] int NOT NULL IDENTITY,
+    [title] nvarchar(max) NOT NULL,
+    [info] nvarchar(max) NOT NULL,
+    [bookquantity] int NOT NULL,
+    [price] int NOT NULL,
+    [cataid] int NOT NULL,
+    [author] nvarchar(max) NOT NULL,
+    [imgfile] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Book] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Book_Category_cataid] FOREIGN KEY ([cataid]) REFERENCES [Category] ([Id]) ON DELETE CASCADE
+);
+```
+
+#### 4. Cart (Sepet)
+```sql
+CREATE TABLE [Cart] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [BookId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [AddedDate] datetime2 NOT NULL,
+    CONSTRAINT [PK_Cart] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Cart_Book_BookId] FOREIGN KEY ([BookId]) REFERENCES [Book] ([Id]) ON DELETE CASCADE
+);
+```
+
+#### 5. Favorite (Favoriler)
+```sql
+CREATE TABLE [Favorite] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [BookId] int NOT NULL,
+    [AddedDate] datetime2 NOT NULL,
+    CONSTRAINT [PK_Favorite] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Favorite_Book_BookId] FOREIGN KEY ([BookId]) REFERENCES [Book] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Favorite_usersaccounts_UserId] FOREIGN KEY ([UserId]) REFERENCES [usersaccounts] ([Id]) ON DELETE CASCADE
+);
+```
+
+#### 6. orders (Siparişler)
+```sql
+CREATE TABLE [orders] (
+    [Id] int NOT NULL IDENTITY,
+    [bookId] int NOT NULL,
+    [userid] int NOT NULL,
+    [quantity] int NOT NULL,
+    [orderdate] datetime2 NOT NULL,
+    CONSTRAINT [PK_orders] PRIMARY KEY ([Id])
+);
+```
+
+#### 7. report (Raporlar)
+```sql
+CREATE TABLE [report] (
+    [Id] int NOT NULL IDENTITY,
+    [customername] nvarchar(max) NOT NULL,
+    [total] int NOT NULL,
+    CONSTRAINT [PK_report] PRIMARY KEY ([Id])
+);
+```
+
+## Örnek Veri Sorguları
+
+### Kullanıcılar
+```sql
+SELECT TOP (1000) [Id], [name], [pass], [role], [email]
+FROM [kutuphane].[dbo].[usersaccounts]
+```
+
+### Kitaplar
+```sql
+SELECT TOP (1000) [Id], [title], [info], [bookquantity], [price], [cataid], [author], [imgfile]
+FROM [kutuphane].[dbo].[Book]
+```
+
+### Kategoriler
+```sql
+SELECT TOP (1000) [Id], [Name], [Description], [ImageUrl]
+FROM [kutuphane].[dbo].[Category]
+```
+
+### Sepet
+```sql
+SELECT TOP (1000) [Id], [UserId], [BookId], [Quantity], [AddedDate]
+FROM [kutuphane].[dbo].[Cart]
+```
+
+### Favoriler
+```sql
+SELECT TOP (1000) [Id], [UserId], [BookId], [AddedDate]
+FROM [kutuphane].[dbo].[Favorite]
+```
+
+### Siparişler
+```sql
+SELECT TOP (1000) [Id], [bookId], [userid], [quantity], [orderdate]
+FROM [kutuphane].[dbo].[orders]
+```
+
+### Raporlar
+```sql
+SELECT TOP (1000) [Id], [customername], [total]
+FROM [kutuphane].[dbo].[report]
+```
+
+### Migration Geçmişi
+```sql
+SELECT TOP (1000) [MigrationId], [ProductVersion]
+FROM [kutuphane].[dbo].[__EFMigrationsHistory]
+```
+
+## API Endpoint'leri
+
+### Kitaplar
+- `GET /api/books` - Tüm kitapları listele
+- `GET /api/books/{id}` - Belirli kitabı getir
+- `POST /api/books` - Yeni kitap ekle
+- `PUT /api/books/{id}` - Kitap güncelle
+- `DELETE /api/books/{id}` - Kitap sil
+
+### Kategoriler
+- `GET /api/categories` - Tüm kategorileri listele
+- `GET /api/categories/{id}` - Belirli kategoriyi getir
+- `POST /api/categories` - Yeni kategori ekle
+
+### Siparişler
+- `GET /api/orders` - Tüm siparişleri listele
+- `POST /api/orders` - Yeni sipariş ekle
+
+### Favoriler
+- `GET /api/favorites` - Tüm favorileri listele
+- `POST /api/favorites` - Yeni favori ekle
+- `DELETE /api/favorites/{id}` - Favori sil
+
+## Varsayılan Kullanıcılar
+
+### Admin Kullanıcısı
+- **Kullanıcı Adı**: admin
+- **Şifre**: admin123
+- **E-posta**: admin@admin.com
+- **Rol**: admin
+
+## Proje Yapısı
+
+```
+kütüphaneuygulaması/
+├── Controllers/
+│   ├── ApiController.cs          # REST API
+│   ├── BooksController.cs        # Kitap yönetimi
+│   ├── CategoryController.cs     # Kategori yönetimi
+│   ├── CartController.cs         # Sepet işlemleri
+│   ├── FavoriteController.cs     # Favori işlemleri
+│   ├── HomeController.cs         # Ana sayfa
+│   ├── ordersController.cs       # Sipariş yönetimi
+│   └── usersaccountsController.cs # Kullanıcı yönetimi
+├── Models/
+│   ├── Book.cs                   # Kitap modeli
+│   ├── Category.cs               # Kategori modeli
+│   ├── Cart.cs                   # Sepet modeli
+│   ├── Favorite.cs               # Favori modeli
+│   ├── orders.cs                 # Sipariş modeli
+│   ├── usersaccounts.cs          # Kullanıcı modeli
+│   └── report.cs                 # Rapor modeli
+├── Views/
+│   ├── Books/                    # Kitap sayfaları
+│   ├── Category/                 # Kategori sayfaları
+│   ├── Cart/                     # Sepet sayfaları
+│   ├── Favorite/                 # Favori sayfaları
+│   ├── Home/                     # Ana sayfa
+│   └── Shared/                   # Ortak layout
+├── Data/
+│   ├── kütüphaneuygulamasıContext.cs # DbContext
+│   └── DbInitializer.cs          # Seed verileri
+└── wwwroot/                      # Statik dosyalar
+```
+
+## Lisans
+
+Bu proje eğitim amaçlı geliştirilmiştir.
+
+## İletişim
+
+- **E-posta**: info@kutuphane.com
+- **Telefon**: +90 212 555 0123
+- **Adres**: İstanbul, Türkiye 
