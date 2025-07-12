@@ -8174,11 +8174,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asus\\Desktop\\kütüphaneuygulaması - Kopya\\kütüphaneuygulaması\\kütüphaneuygulaması.csproj",
+      "projectUniqueName": "C:\\Users\\asus\\Desktop\\k-t-phane-__web\\kütüphaneuygulaması son hal\\kütüphaneuygulaması\\kütüphaneuygulaması.csproj",
       "projectName": "kütüphaneuygulaması",
-      "projectPath": "C:\\Users\\asus\\Desktop\\kütüphaneuygulaması - Kopya\\kütüphaneuygulaması\\kütüphaneuygulaması.csproj",
+      "projectPath": "C:\\Users\\asus\\Desktop\\k-t-phane-__web\\kütüphaneuygulaması son hal\\kütüphaneuygulaması\\kütüphaneuygulaması.csproj",
       "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asus\\Desktop\\kütüphaneuygulaması - Kopya\\kütüphaneuygulaması\\obj\\",
+      "outputPath": "C:\\Users\\asus\\Desktop\\k-t-phane-__web\\kütüphaneuygulaması son hal\\kütüphaneuygulaması\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

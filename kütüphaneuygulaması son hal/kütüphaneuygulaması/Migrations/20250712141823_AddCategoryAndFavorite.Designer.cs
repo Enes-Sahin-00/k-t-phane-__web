@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using kütüphaneuygulaması.Data;
 
@@ -11,9 +12,11 @@ using kütüphaneuygulaması.Data;
 namespace kütüphaneuygulaması.Migrations
 {
     [DbContext(typeof(kütüphaneuygulamasıContext))]
-    partial class kütüphaneuygulamasıContextModelSnapshot : ModelSnapshot
+    [Migration("20250712141823_AddCategoryAndFavorite")]
+    partial class AddCategoryAndFavorite
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

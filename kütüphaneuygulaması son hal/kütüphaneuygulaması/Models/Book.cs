@@ -11,7 +11,7 @@
         public string author { get; set; }
         public string imgfile { get; set; }
 
-
-
+        // Navigation properties
+        public Category Category { get; set; }
     }
 }

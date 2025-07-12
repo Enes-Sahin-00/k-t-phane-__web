@@ -1,8 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="text-center mb-5">
+                <h1 class="display-4">@ViewData["WelcomeMessage"]</h1>
+                <p class="lead">Modern ve kullanıcı dostu kütüphane yönetim sistemi</p>
+                <p class="text-muted">Bugün: @ViewBag.CurrentDate.ToString("dd MMMM yyyy")</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Kitap Kataloğu</h5>
+                    <p class="card-text">Geniş kitap koleksiyonumuzu keşfedin ve istediğiniz kitabı bulun.</p>
+                    <a href="@Url.Action("catalogue", "Books")" class="btn btn-primary">Kitapları Görüntüle</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-tags fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Kategoriler</h5>
+                    <p class="card-text">Kategorilere göre kitapları filtreleyin ve kolayca bulun.</p>
+                    <a href="@Url.Action("List", "Category")" class="btn btn-success">Kategorileri Görüntüle</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                    <h5 class="card-title">Favoriler</h5>
+                    <p class="card-text">Beğendiğiniz kitapları favorilerinize ekleyin ve takip edin.</p>
+                    <a href="@Url.Action("Index", "Favorite")" class="btn btn-danger">Favorilerim</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Öne Çıkan Özellikler</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Geniş kitap koleksiyonu</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Kategori bazlı filtreleme</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Favori kitap sistemi</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Güvenli alışveriş</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Responsive tasarım</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Hızlı İşlemler</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("catalogue", "Books")" class="btn btn-outline-primary">Kitap Ara</a>
+                        <a href="@Url.Action("Create", "usersaccounts")" class="btn btn-outline-success">Hesap Oluştur</a>
+                        <a href="@Url.Action("login", "usersaccounts")" class="btn btn-outline-info">Giriş Yap</a>
+                        <a href="@Url.Action("About", "Home")" class="btn btn-outline-secondary">Hakkımızda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["VisitCount"] != null)
+    {
+        <div class="text-center mt-4">
+            <small class="text-muted">Ziyaret sayısı: @TempData["VisitCount"]</small>
+        </div>
+    }
 </div>

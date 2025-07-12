@@ -7,7 +7,8 @@ builder.Services.AddDbContext<kütüphaneuygulamasıContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(1); });
+builder.Services.AddControllers(); // API controller desteği
+builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(30); });
 
 var app = builder.Build();
 
@@ -32,5 +33,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=usersaccounts}/{action=login}/{id?}");
+
+app.MapControllers(); // API controller'ları için
 
 app.Run();

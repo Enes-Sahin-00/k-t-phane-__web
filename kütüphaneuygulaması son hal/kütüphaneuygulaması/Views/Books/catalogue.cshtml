@@ -15,10 +15,21 @@
                     <h5 class="card-title text-center" style="color: var(--gece-laciverti); font-family: var(--font-baslik); font-weight: 700;">@item.title</h5>
                     <p class="card-text text-muted mb-2" style="font-size: 0.95rem;">@item.author</p>
                     <div class="mb-2 fw-bold" style="color: var(--canli-turuncu); font-size: 1.1rem;">@item.price ₺</div>
-                    <form asp-controller="Cart" asp-action="Add" method="post" class="w-100 mb-2">
-                        <input type="hidden" name="bookId" value="@item.Id" />
-                        <button type="submit" class="btn btn-primary w-100 text-white">Sepete Ekle</button>
-                    </form>
+                    
+                    <div class="d-flex gap-2 w-100 mb-2">
+                        <form asp-controller="Cart" asp-action="Add" method="post" class="flex-grow-1">
+                            <input type="hidden" name="bookId" value="@item.Id" />
+                            <button type="submit" class="btn btn-primary w-100 text-white">Sepete Ekle</button>
+                        </form>
+                        
+                        <form asp-controller="Favorite" asp-action="Add" method="post" class="flex-grow-1">
+                            <input type="hidden" name="bookId" value="@item.Id" />
+                            <button type="submit" class="btn btn-outline-warning w-100">
+                                <i class="fas fa-heart"></i> Favori
+                            </button>
+                        </form>
+                    </div>
+                    
                     <a asp-controller="orders" asp-action="Create" asp-route-id="@item.Id" class="btn btn-warning mt-auto w-100 text-white fw-bold" style="letter-spacing:1px; font-size:1.1rem;">Satın Al</a>
                 </div>
             </div>

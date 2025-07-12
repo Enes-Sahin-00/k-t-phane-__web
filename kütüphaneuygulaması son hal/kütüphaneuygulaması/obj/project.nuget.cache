@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Mqtr246lJCI=",
+  "dgSpecHash": "8LqE8sxwJv4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\asus\\Desktop\\kütüphaneuygulaması - Kopya\\kütüphaneuygulaması\\kütüphaneuygulaması.csproj",
+  "projectFilePath": "C:\\Users\\asus\\Desktop\\k-t-phane-__web\\kütüphaneuygulaması son hal\\kütüphaneuygulaması\\kütüphaneuygulaması.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
